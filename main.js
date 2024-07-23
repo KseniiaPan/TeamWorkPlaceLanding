@@ -1,7 +1,20 @@
+const makeElement = (tagName, className, attributeName, attributeValue, text) => {
+    const element = document.createElement(tagName);
+    element.classList.add(className);
+    if (attributeName) {
+        element.setAttribute(attributeName, attributeValue); 
+    }
+
+    if (text) {
+      element.innerHTML = text;
+    }
+    return element;
+  };
+
+
 const app = document.getElementById('app');
 
-const header = document.createElement('header');
-header.classList.add('header');
+const header = makeElement('header', 'header');
 app.append(header);
 
 const image = document.createElement('img');
