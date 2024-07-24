@@ -1,128 +1,86 @@
-const makeElement = (tagName, className, attributeName, attributeValue, text) => {
-    const element = document.createElement(tagName);
-    element.classList.add(className);
-    if (attributeName) {
-        element.setAttribute(attributeName, attributeValue); 
-    }
-
-    if (text) {
-      element.innerHTML = text;
-    }
-    return element;
-  };
-
-
 const app = document.getElementById('app');
 
-const header = makeElement('header', 'header');
+const makeElement = (tag, attributes, text) => {
+  const element = document.createElement(tag);
+
+  attributes && Object.keys(attributes).forEach(key => {
+     element.setAttribute(key, attributes[key]);
+  });
+  
+  if (text) {
+    element.innerHTML = text;
+  }
+  return element;
+};
+
+const header = makeElement('header');
 app.append(header);
 
-const image = document.createElement('img');
-image.src = 'logo.png';
-image.alt = 'Описание изображения';
+const image = makeElement('img', {'src': 'logo.png', 'alt': 'Логотип'});
 header.append(image);
+console.log(header);
 
-const navigation = document.createElement('nav');
-navigation.classList.add('site-navigation');
-
-const navigationList = document.createElement('ul');
+const navigation = makeElement('nav');
+const navigationList = makeElement('ul', {'class': 'site-navigation'}); 
 navigation.append(navigationList);
 
-const guidesListItem = document.createElement('li');
-const guidesListItemLink = document.createElement('a');
-guidesListItemLink.innerHTML = 'Guides';
-guidesListItemLink.href = '#';
+const guidesListItem = makeElement('li', {'class': 'navigation-item'});
+const guidesListItemLink = makeElement('a', {'href': '#'}, 'Guides');
 guidesListItem.append(guidesListItemLink);
-guidesListItem.classList.add('navigation-item');
 
-const featuresListItem = document.createElement('li');
-const featuresListItemLink = document.createElement('a');
-featuresListItemLink.innerHTML = 'Features';
-featuresListItemLink.href = '#';
+
+const featuresListItem = makeElement('li', {'class': 'navigation-item'});
+const featuresListItemLink = makeElement('a', {'href': '#'}, 'Features');
 featuresListItem.append(featuresListItemLink);
-featuresListItem.classList.add('navigation-item');
 
-const pricingListItem = document.createElement('li');
-const pricingListItemLink = document.createElement('a');
-pricingListItemLink.innerHTML = 'Pricing';
-pricingListItemLink.href = '#';
+const pricingListItem = makeElement('li', {'class': 'navigation-item'});
+const pricingListItemLink = makeElement('a', {'href': '#'}, 'Pricing');
 pricingListItem.append(pricingListItemLink);
-pricingListItem.classList.add('navigation-item');
 
-const supportListItem = document.createElement('li');
-const supportListItemLink = document.createElement('a');
-supportListItemLink.innerHTML = 'Support';
-supportListItemLink.href = '#';
+const supportListItem = makeElement('li', {'class': 'navigation-item'});
+const supportListItemLink = makeElement('a', {'href': '#'}, 'Support');
 supportListItem.append(supportListItemLink);
-supportListItem.classList.add('navigation-item');
 
-const changelogListItem = document.createElement('li');
-const changelogListItemLink = document.createElement('a');
-changelogListItemLink.innerHTML = 'Changelog';
-changelogListItemLink.href = '#';
+const changelogListItem = makeElement('li', {'class': 'navigation-item'});
+const changelogListItemLink = makeElement('a', {'href': '#'}, 'Changelog');
 changelogListItem.append(changelogListItemLink);
-changelogListItem.classList.add('navigation-item');
 
 navigationList.append(guidesListItem, featuresListItem, pricingListItem, pricingListItem, supportListItem, changelogListItem);
-navigationList.classList.add('site-navigation');
 
-const buttonsContainer = document.createElement('div');
-buttonsContainer.classList.add('buttons-container');
+const buttonsContainer = makeElement('div', {'class': 'buttons-container'});
 
-const signInButton = document.createElement('button');
-signInButton.innerHTML = 'Sign in';
-signInButton.classList.add('button');
-
-const signUpButton = document.createElement('button');
-signUpButton.innerHTML = 'Sign up';
-signUpButton.classList.add('button-active');
-
+const signInButton = makeElement('button', {'class': 'button'}, 'Sign in');
+const signUpButton = makeElement('button', {'class': 'button-active'}, 'Sign up');
 buttonsContainer.append(signInButton, signUpButton);
 
-const navigationAndButtonsContainer = document.createElement('div');
-navigationAndButtonsContainer.classList.add('navigation-buttons-container');
+const navigationAndButtonsContainer = makeElement('div', {'class': 'navigation-buttons-container'});
 
 navigationAndButtonsContainer.append(navigation, buttonsContainer);
 header.append(navigationAndButtonsContainer);
 
-
-const main = document.createElement('main');
+const main = makeElement('main');
 app.append(main);
 
-const headlineSection = document.createElement('section');
-headlineSection.classList.add('headline-section');
+const headlineSection = makeElement('section', {'class': 'headline-section'});
 
-const headline = document.createElement('h1');
-headline.innerHTML = `Finally, all your team's work in one place`;
-headline.classList.add('headline');
-
-const subheadline = document.createElement('h2');
-subheadline.innerHTML = `Increase your team's <span>speed, collaboration,</span> and <span>alignment</span> by giving everyone an overview of the most important work happening across your company.`;
-subheadline.classList.add('subheadline');
+const headline = makeElement('h1', {'class': 'headline'}, `Finally, all your team's work in one place`);
+const subheadline = makeElement('h2', {'class': 'subheadline'}, `Increase your team's <span>speed, collaboration,</span> and <span>alignment</span> by giving everyone an overview of the most important work happening across your company.`);
 
 headlineSection.append(headline, subheadline);
 
-const startSection = document.createElement('section');
-startSection.classList.add('start-section');
+const startSection = makeElement('section', {'class': 'start-section'});
 
-const mainButtonsContainer = document.createElement('div');
-mainButtonsContainer.classList.add('main-button-container');
+const mainButtonsContainer = makeElement('div', {'class': 'main-button-container'});
 
-const getStartedButton = document.createElement('button');
-getStartedButton.innerHTML = 'Get started for free';
-getStartedButton.classList.add('main-start-button');
+const getStartedButton = makeElement('button', {'class': 'main-start-button'}, 'Get started for free');
 
-const watchVideoButton = document.createElement('button');
-watchVideoButton.innerHTML = 'Watch video';
-watchVideoButton.classList.add('main-watch-button');
+const watchVideoButton = makeElement('button', {'class': 'main-watch-button'}, 'Watch video');
 
-const note = document.createElement('div');
-note.innerHTML = 'No credit card required';
-note.classList.add('start-note');
+const note = makeElement('div', {'class': 'start-note'}, 'No credit card required');
 
 mainButtonsContainer.append(getStartedButton, watchVideoButton);
-mainButtonsContainer.classList.add('main-buttons-container');
 
 startSection.append(mainButtonsContainer, note);
 
 main.append(headlineSection, startSection);
+ 
